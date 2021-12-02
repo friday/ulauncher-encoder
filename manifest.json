@@ -3,7 +3,7 @@
     "name": "Encoder",
     "description": "Encode/Decode a string into multiple formats",
     "developer_name": "Bruno Paz",
-    "icon": "images/icon.png",
+    "icon": "images/encode.svg",
     "options": {
         "query_debounce": 0.05
     },
@@ -13,6 +13,7 @@
             "type": "keyword",
             "name": "Encoder",
             "description": "Encodes a string into multiple formats",
+            "icon": "images/encode.svg",
             "default_value": "encode"
         },
         {
@@ -20,6 +21,7 @@
             "type": "keyword",
             "name": "Decoder",
             "description": "Decodes a string into multiple formats",
+            "icon": "images/decode.svg",
             "default_value": "decode"
         }
     ]

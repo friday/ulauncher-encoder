@@ -38,17 +38,17 @@ class EncoderExtension(Extension):
         decoded_html = html.unescape(text)
 
         return [
-            ExtensionResultItem(icon='images/icon.png',
+            ExtensionResultItem(icon='images/decode.svg',
                                 name=decoded_base64,
                                 description='Base64 Decoded',
                                 highlightable=False,
                                 on_enter=CopyToClipboardAction(decoded_base64)),
-            ExtensionResultItem(icon='images/icon.png',
+            ExtensionResultItem(icon='images/decode.svg',
                                 name=decoded_url,
                                 description='URL Decoded',
                                 highlightable=False,
                                 on_enter=CopyToClipboardAction(decoded_url)),
-            ExtensionResultItem(icon='images/icon.png',
+            ExtensionResultItem(icon='images/decode.svg',
                                 name=decoded_html,
                                 description='HTML Decoded',
                                 highlightable=False,
@@ -63,17 +63,17 @@ class EncoderExtension(Extension):
         encoded_html = html.escape(text)
 
         return [
-            ExtensionResultItem(icon='images/icon.png',
+            ExtensionResultItem(icon='images/encode.svg',
                                 name=encoded_base64,
                                 description='Base64 Encoded',
                                 highlightable=False,
                                 on_enter=CopyToClipboardAction(encoded_base64)),
-            ExtensionResultItem(icon='images/icon.png',
+            ExtensionResultItem(icon='images/encode.svg',
                                 name=encoded_url,
                                 description='URL Encoded',
                                 highlightable=False,
                                 on_enter=CopyToClipboardAction(encoded_url)),
-            ExtensionResultItem(icon='images/icon.png',
+            ExtensionResultItem(icon='images/encode.svg',
                                 name=encoded_html,
                                 description='HTML Encoded',
                                 highlightable=False,
@@ -88,7 +88,7 @@ class KeywordQueryEventListener(EventListener):
         items = []
 
         text = event.get_argument() or ""
-        if event.get_keyword() == "encode":
+        if event.get_keyword_id() == "encoder_kw":
             items = extension.encode(text)
         else:
             items = extension.decode(text)
