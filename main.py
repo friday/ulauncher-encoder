@@ -38,21 +38,27 @@ class EncoderExtension(Extension):
         decoded_html = html.unescape(text)
 
         return [
-            ExtensionResultItem(icon='images/decode.svg',
-                                name=decoded_base64,
-                                description='Base64 Decoded',
-                                highlightable=False,
-                                on_enter=CopyToClipboardAction(decoded_base64)),
-            ExtensionResultItem(icon='images/decode.svg',
-                                name=decoded_url,
-                                description='URL Decoded',
-                                highlightable=False,
-                                on_enter=CopyToClipboardAction(decoded_url)),
-            ExtensionResultItem(icon='images/decode.svg',
-                                name=decoded_html,
-                                description='HTML Decoded',
-                                highlightable=False,
-                                on_enter=CopyToClipboardAction(decoded_html))
+            ExtensionResultItem(
+                icon='images/decode.svg',
+                name=decoded_base64,
+                description='Base64 Decoded',
+                highlightable=False,
+                on_enter=CopyToClipboardAction(decoded_base64)
+            ),
+            ExtensionResultItem(
+                icon='images/decode.svg',
+                name=decoded_url,
+                description='URL Decoded',
+                highlightable=False,
+                on_enter=CopyToClipboardAction(decoded_url)
+            ),
+            ExtensionResultItem(
+                icon='images/decode.svg',
+                name=decoded_html,
+                description='HTML Decoded',
+                highlightable=False,
+                on_enter=CopyToClipboardAction(decoded_html)
+            )
         ]
 
     def encode(self, text):
@@ -63,21 +69,27 @@ class EncoderExtension(Extension):
         encoded_html = html.escape(text)
 
         return [
-            ExtensionResultItem(icon='images/encode.svg',
-                                name=encoded_base64,
-                                description='Base64 Encoded',
-                                highlightable=False,
-                                on_enter=CopyToClipboardAction(encoded_base64)),
-            ExtensionResultItem(icon='images/encode.svg',
-                                name=encoded_url,
-                                description='URL Encoded',
-                                highlightable=False,
-                                on_enter=CopyToClipboardAction(encoded_url)),
-            ExtensionResultItem(icon='images/encode.svg',
-                                name=encoded_html,
-                                description='HTML Encoded',
-                                highlightable=False,
-                                on_enter=CopyToClipboardAction(encoded_html))
+            ExtensionResultItem(
+                icon='images/encode.svg',
+                name=encoded_base64,
+                description='Base64 Encoded',
+                highlightable=False,
+                on_enter=CopyToClipboardAction(encoded_base64)
+            ),
+            ExtensionResultItem(
+                icon='images/encode.svg',
+                name=encoded_url,
+                description='URL Encoded',
+                highlightable=False,
+                on_enter=CopyToClipboardAction(encoded_url)
+            ),
+            ExtensionResultItem(
+                icon='images/encode.svg',
+                name=encoded_html,
+                description='HTML Encoded',
+                highlightable=False,
+                on_enter=CopyToClipboardAction(encoded_html)
+            )
         ]
 
 
