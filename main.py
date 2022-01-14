@@ -1,7 +1,6 @@
 """
 Ulauncher Encoder extension
 """
-import logging
 import base64
 import urllib
 import html
@@ -12,13 +11,11 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAction
 
-LOGGER = logging.getLogger(__name__)
 
 class EncoderExtension(Extension):
     """ Main Extension class """
 
     def __init__(self):
-        LOGGER.info('Starting Encoder Extension')
         super(EncoderExtension, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
 
