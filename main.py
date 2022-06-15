@@ -4,20 +4,15 @@ Ulauncher Encoder extension
 import base64
 import urllib
 import html
-from ulauncher.api.client.Extension import Extension
-from ulauncher.api.client.EventListener import EventListener
-from ulauncher.api.shared.event import KeywordQueryEvent
-from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
-from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
+from ulauncher.api import Extension, ExtensionResult
 from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAction
 
 
 class EncoderExtension(Extension):
-    """ Main Extension class """
-
-    def __init__(self):
-        super(EncoderExtension, self).__init__()
-        self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
+    def on_query_change(self, query):
+        if query.keyword == "encode":
+            return self.encode(query.argument)
+        return self.decode(query.argument)
 
     def decode(self, text):
         """ Decode a string into multiple formats """
@@ -35,21 +30,21 @@ class EncoderExtension(Extension):
         decoded_html = html.unescape(text)
 
         return [
-            ExtensionResultItem(
+            ExtensionResult(
                 icon='images/decode.svg',
                 name=decoded_base64,
                 description='Base64 Decoded',
                 highlightable=False,
                 on_enter=CopyToClipboardAction(decoded_base64)
             ),
-            ExtensionResultItem(
+            ExtensionResult(
                 icon='images/decode.svg',
                 name=decoded_url,
                 description='URL Decoded',
                 highlightable=False,
                 on_enter=CopyToClipboardAction(decoded_url)
             ),
-            ExtensionResultItem(
+            ExtensionResult(
                 icon='images/decode.svg',
                 name=decoded_html,
                 description='HTML Decoded',
@@ -66,21 +61,21 @@ class EncoderExtension(Extension):
         encoded_html = html.escape(text)
 
         return [
-            ExtensionResultItem(
+            ExtensionResult(
                 icon='images/encode.svg',
                 name=encoded_base64,
                 description='Base64 Encoded',
                 highlightable=False,
                 on_enter=CopyToClipboardAction(encoded_base64)
             ),
-            ExtensionResultItem(
+            ExtensionResult(
                 icon='images/encode.svg',
                 name=encoded_url,
                 description='URL Encoded',
                 highlightable=False,
                 on_enter=CopyToClipboardAction(encoded_url)
             ),
-            ExtensionResultItem(
+            ExtensionResult(
                 icon='images/encode.svg',
                 name=encoded_html,
                 description='HTML Encoded',
@@ -88,22 +83,6 @@ class EncoderExtension(Extension):
                 on_enter=CopyToClipboardAction(encoded_html)
             )
         ]
-
-
-class KeywordQueryEventListener(EventListener):
-    """ Handles input events """
-    def on_event(self, event, extension):
-        """ Handles event """
-        items = []
-
-        text = event.get_argument() or ""
-        if event.get_keyword_id() == "encoder_kw":
-            items = extension.encode(text)
-        else:
-            items = extension.decode(text)
-
-        return RenderResultListAction(items)
-
 
 if __name__ == '__main__':
     EncoderExtension().run()
